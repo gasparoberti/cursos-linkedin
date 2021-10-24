@@ -44,7 +44,16 @@ cat .git/config me muestra lo que tiene el archivo config
 si elimino el directorio .git git será removido del proyecto
 
 
-git add .	agrega todos los archivos en la carpeta donde estoy parado.
+git add .	agrega todos los archivos en la carpeta donde estoy parado. quedando listos para commitear
+git commit -m "Initila commit"
+
+Buenas practicas para mjes de commit:
+	descripcion corta de 50 caracteres o menos. si se necesita una descripcion mayor se la agrega a continuacion separandola con una linea en blanco
+	tratar de que cada linea tenga como maximo 72 caracteres para que se pueda ver bien en los distintos medios (movil, github, email, etc...)
+	escribir los mjes en presente y no en pasado
+	agregar un numero de seguimiento 
+	distinguir con distintos "tags" como "[css, js]" o "bugfix:" o "#3536 -"
+	mjes claros y descriptivos
 
 Comandos basicoas para git:
 
