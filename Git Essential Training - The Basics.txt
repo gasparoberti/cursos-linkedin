@@ -108,16 +108,25 @@ mover y renombrar archivos: mover y renombrar se usan con el mismo comando
 git mv nombreActual nuevoNombre		te actualiza el nombre del archivo
 git mv nombreArchivo carpeta/nombreArchivo	lo cambia de ubicación
 	
-git diff --color--words		te muestra en colores diferentes (rojo y verde) las lineas que sufrieron modificaciones.
+git diff --color-words		te muestra en colores diferentes (rojo y verde) las lineas que sufrieron modificaciones.
 
 
 Stage y commit atajo:
-git commit -am "mensaje" 	git commit -a -m "mensaje" 
+git commit -am "mensaje" 	git commit -a -m "mensaje" 	son lo mismo
 gut commit --all
 agrega y commitea TODOS los cambios de archivos trackeados. si tengo archivos que no fueron trackeados todavía (archivos nuevos) estos no serán incluidos. si los quiero incluir tendré que hacer un add y un commit por separado.	-> funciona para cuando se edita archivos 
 
+Show commits:
+git show 260885		es como si fuera un git diff pero aplicado al commit que tiene ese id (sha o checksum)	de 6 a 8 caracteres alcanza para que git reconozca el commit correcto
+tambien le puedo agregar --color-words para que resalte solo las palabras modificadas 
 
+Compare commits:
+git diff 9e98601..260885b2 --color-words	compara esos dos commits específicos
+git diff 9e98601..HEAD --color-words		compara con el commit HEAD
 
+Commits multilinea:
+git commit -a		abre el editor de texto que se tiene configurado para ingresar una descripción.
+las lineas que empiecen con # serán ignoradas y si el mensaje está vacío se aborta el commit
 
 Comandos basicoas para git:
 
