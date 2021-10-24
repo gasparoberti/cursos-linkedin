@@ -1,0 +1,50 @@
+se almacena la version original y un conjunto de cambios SCCS
+almacena la ultima version y un conjunto de cambios RCS
+ninguno de los dos permitía acceder a multiples archivos.
+
+accede a multiples archivos de todo el proyectp. repos multiusuarios. trabajo concurrente CSV o SVN (trackean versiones)
+
+Distributed version control: NO TIENE UN SERVER CENTRAL como en cvs o svn. todos los repos son iguales.
+se almacenan conjuntos de cambios en vez de versiones. 
+incentiva la participacion y forkeo de proyectos. los devs pueden trabajar independientemente. se pueden agregar cambios para incluir o rechazar.
+
+wich git -> te redirige al path en el bin donde está instalado
+git --version
+
+Configuration:
+System: /etc/gitconfig
+	Program Files\Git\etc\gitconfig
+git config --system
+
+User:	~/.gitconfig
+	$HOME\.gitconfig
+git config --global user.name "nombre"
+		    user.email "email"
+git config --list	-> lista todas las conf
+git config --global core.editor "notepad.exe"
+git config --global color.ui true
+
+Git Auto-Completion	mac y linux te autocompleta con tab
+
+Git Help:	git help 
+	git help log <-> man git-log (unix)	q sale de la ayuda
+
+
+Project: my_project/.git/config
+git config
+
+
+Inicializar un repo
+
+git init	inicializa un repo
+ls -la 		lista los archivos (incluidos los ocultos -> .git, etc..)
+ls -la .git 	lista todos el contenido que tiene .git (HEAD, config, etc..)
+cat .git/config me muestra lo que tiene el archivo config
+
+si elimino el directorio .git git será removido del proyecto
+
+
+git add .	agrega todos los archivos en la carpeta donde estoy parado.
+
+Comandos basicoas para git:
+
