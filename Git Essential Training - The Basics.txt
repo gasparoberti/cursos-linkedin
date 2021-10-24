@@ -55,5 +55,69 @@ Buenas practicas para mjes de commit:
 	distinguir con distintos "tags" como "[css, js]" o "bugfix:" o "#3536 -"
 	mjes claros y descriptivos
 
+para hacer saltos de linea no hay que cerrar la comilla doble del final. se abre la inicial y despues se escribe todo lo que se quiera incluyendo saltos de linea o lineas en blanco. cuando se quiera terminar el mje se cierra la comilla y se presiona enter.
+
+git log 	te muestra el log de todos los commits que hayas hecho.
+		cada commit tiene un id unico, autor, fecha y mje.
+git help log 	te muestra las diferentes opciones de parametros que tiene log.
+git log -n 5 te muestra los 5 commits mas recientes.
+git log --since=2021-10-23	te muestra los comentarios desde esa fecha (no muestra los de esa fecha por ejemplo --since=2021-10-24 no me muestra nada)
+	until es igual que since pero funciona como delimitador hacia atras
+git log --grep "Init"	busca a partir de expresiones regulares. es key sensitive
+
+Git workflow:
+
+	/-	repository	-\
+git commit
+       	=	staging index	 |
+git add
+	\-	working		-/
+
+Hash Values:
+git genera un checksum por cada conjunto de cambios
+mismos datos tienen siempre el mismo checksum
+garantiza la integridad de los datos
+si se cambia la data cambia el checksum 
+el checksum es un string hexadecimal de 40 caracteres (0-9, a-f)
+
+HEAD pointer: ubica el puntero en el último commit. parte de la rama master pero con cada commit se va corriendo el head. 
+		si se crea un nuevo branch se mueve el head
+		en el head se guarda el checksum del commit
+ls -la .git
+cat .git/HEAD
+cat .git/refs/heads/master
+obtengo el checksum (lo puedo verificar con git log y ver que el sha (checksum) es el mismo
+
+git status	muestra los archivos que faltan agregar para commitear (los agrega al staging area) se llaman untracked files
+git add . sirve para agregar al staging area archivos nuevos así como tambien modificaciones a archivos que ya existen
+
+git diff	muestra las diferencias en el archivo entre la última versión commiteada y la versión que se está modificando
+el nombre del archivo con --- a/..... es la versión que está en el repository
+mientras que el que está con +++ b/.... es lo que tengo en el working (en blanco las lineas que ya estaban y en verde las nuevas lineas)
+
+diff por defecto compara el working con el staging
+git diff --staged	muestra las diferencias entre los archivos que están en el staging y en el repository (no las diferencias entre staging y el working)
+
+borrar archivos:
+al borrar archivos que todavía no fueron agregados al staging no pasa nada porque los archivos todavía no fueron trackeados.
+para tratar con archivos que ya fueron commietados se puede
+	borrar el archivo directamente en el ditectorio (requiere hacer un rm y un commit para que git deje de trackearlo)
+	git rm nombreArchivo	lo remueve del staging area, por lo tanto no hay que hacer el add. OJO que lo elimina tambien del working (directorio) pero sin mandarlo a la papelera, lo elimina y no hay forma de recuperarlo.
+
+mover y renombrar archivos: mover y renombrar se usan con el mismo comando
+git mv nombreActual nuevoNombre		te actualiza el nombre del archivo
+git mv nombreArchivo carpeta/nombreArchivo	lo cambia de ubicación
+	
+git diff --color--words		te muestra en colores diferentes (rojo y verde) las lineas que sufrieron modificaciones.
+
+
+Stage y commit atajo:
+git commit -am "mensaje" 	git commit -a -m "mensaje"
+gut commit --all
+agrega y commitea TODOS los cambios de archivos trackeados. si tengo archivos que no fueron trackeados todavía (archivos nuevos) estos no serán incluidos. si los quiero incluir tendré que hacer un add y un commit por separado.	-> funciona para cuando se edita archivos 
+
+
+
+
 Comandos basicoas para git:
 
