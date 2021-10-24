@@ -125,8 +125,34 @@ git diff 9e98601..260885b2 --color-words	compara esos dos commits específicos
 git diff 9e98601..HEAD --color-words		compara con el commit HEAD
 
 Commits multilinea:
-git commit -a		abre el editor de texto que se tiene configurado para ingresar una descripción.
-las lineas que empiecen con # serán ignoradas y si el mensaje está vacío se aborta el commit
+git commit -a		abre el editor de texto que se tiene configurado para ingresar una descripción. las lineas que empiecen con # serán ignoradas y si el mensaje está vacío se aborta el commit. para guardar el commit basta con cerrar el editor (no se necesita guardar)
 
-Comandos basicoas para git:
+git log --oneline	devuelve todas las primeras lineas de cada commit (los ultimos cinco)
 
+
+Atomics Commits:	buena practica
+Son lo mas pequeño posible, afectan a un solo aspecto
+son faciles de entender para trabajar con ellos y encontrar bugs
+mejora la colaboracion con otros
+tratar de que por mas de que se haga muchas modificaciones en archivos diferentes se hagan commits separados en los cuales se commitee cada funcionalidad o correccion por separado.
+
+
+Deshaciendo cambios en working directory:
+git checkout -- nombreArchivo 	descarta los cambios en el working
+git checkout -- . 	descarta los cambios de todos
+
+Unstaged files:
+git reset HEAD nombreArchivo		saca del staging area al archivo
+
+Amend commits:	incluye cambios en el ultimo commit
+git commit --amend -m "mensaje"		te agrega el cambio, cambia el mje del commit y cambia el sha. tambien puedo hacer el commit --amend solo pasandole un nuevo mje. cambia el sha y actualiza el mje del commit pero los cambios son los mismos.
+
+
+Obteniendo versiones viejas:
+git checkout 2b6c94b -- nombreArchivo		vuelve el archivo que se commiteo al staging area
+
+
+Revertir un commit:
+git revert 2b6c94b65		abre un editor de texto para modificar el mje del commit y crea un nuevo commit con el nuevo mje en el cual se deshace el commit. por lo tanto si se hace un log entonces aparecerá el nuevo commit con el revert
+
+Remover archivos untrackeados:
