@@ -112,7 +112,7 @@ git diff --color--words		te muestra en colores diferentes (rojo y verde) las lin
 
 
 Stage y commit atajo:
-git commit -am "mensaje" 	git commit -a -m "mensaje"
+git commit -am "mensaje" 	git commit -a -m "mensaje" 
 gut commit --all
 agrega y commitea TODOS los cambios de archivos trackeados. si tengo archivos que no fueron trackeados todavía (archivos nuevos) estos no serán incluidos. si los quiero incluir tendré que hacer un add y un commit por separado.	-> funciona para cuando se edita archivos 
 
