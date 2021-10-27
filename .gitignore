@@ -1,0 +1,11 @@
+# demo utilizando un archivo .log vacío a modo de ejemplo
+
+*.zip
+*.gz
+log/*.log
+log/*.log.[0-9]
+
+*.php 
+!index.php
+
+access.log
