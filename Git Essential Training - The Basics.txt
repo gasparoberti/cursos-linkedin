@@ -186,3 +186,10 @@ asi el gitignore lo puede ignorar. para esto hay que hacer un nuevo commit en el
 
 Track empty directories:
 git ls-tree HEAD	te muesra todos los directorios y archivos. pero no trackea los nuevos directorios que agregue y esten vacíos. para contemplarlos para lo que sea que se los necesite hay que asegurarse de que no estén vacíos incluyendo archivos como .gitkeep
+cuando hago el add de la carpeta va a aparecer que está el archivo nuevo .gitkeep pero despues del commit si hacemos un status veremos que ese archivo no se guarda.
+touch .gitkeep te crea el archivo por consola
+
+
+certificado del curso:
+
+https://www.linkedin.com/learning/certificates/aa607704dd797ce64167a4e0235c97a3f2fd1a31ddf55b32e4d06344d346e2be?trk=share_certificate
