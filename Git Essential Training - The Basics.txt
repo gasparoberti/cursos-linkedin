@@ -153,6 +153,18 @@ git checkout 2b6c94b -- nombreArchivo		vuelve el archivo que se commiteo al stag
 
 
 Revertir un commit:
-git revert 2b6c94b65		abre un editor de texto para modificar el mje del commit y crea un nuevo commit con el nuevo mje en el cual se deshace el commit. por lo tanto si se hace un log entonces aparecerá el nuevo commit con el revert
+git revert 2b6c94b65		abre un editor de texto para modificar el mje del commit y crea un nuevo commit con el nuevo mje en el cual se revierte el commit. por lo tanto si se hace un log entonces aparecerá el nuevo commit con el revert y el archivo estará en el staging area
 
 Remover archivos untrackeados:
+git clean -n		te avisa que va a remover los archivos no trackeados
+git clean -f		los remueve sin pasar por la papelera
+
+
+Git ignore:
+
+usa expresiones regulares para crear reglas acerca de lo que no tiene que trackear
+por ej *.php ignora todos los de ese tipo.
+	!index.php aclara que a ese no tiene que ignorarlo
+	assets/videos/	ignora todo lo que haya en la carpeta
+	# es para comentar
+	las lineas blancas son salteadas
