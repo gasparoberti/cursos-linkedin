@@ -9,3 +9,6 @@ log/*.log.[0-9]
 !index.php
 
 access.log
+
+#ejemplo: primero se crea el archivo. se commitea. luego se agrega al ignore y se modifica y se va a detectar que en el status va a aparecer que se modificó. para que esto deje de pasar se debe eliminar del repo con  git rm --cached nombreArchivo.txt  y volver a commitear. recién ahí el ignore lo tomará y hará su trabajo para que se pueda modificar y que no sea trackeado.
+db_config.txt

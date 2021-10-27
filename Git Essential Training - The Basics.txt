@@ -182,3 +182,7 @@ git config --global core.excludesfile ~/gitignore_global
 Ignore tacked files:
 cuando quiero ignorar un archivo que está trackeado debo agregarlo en el gitignore, sacarlo del repo y ponerlo en el staging. git rm --cached nombreArchivo.txt	
 asi el gitignore lo puede ignorar. para esto hay que hacer un nuevo commit en el que se borrarra nombreArchivo y desde ahí funcionará el gitignore por mas de que modifiquemos el archivo que se quiere ignorar.
+
+
+Track empty directories:
+git ls-tree HEAD	te muesra todos los directorios y archivos. pero no trackea los nuevos directorios que agregue y esten vacíos. para contemplarlos para lo que sea que se los necesite hay que asegurarse de que no estén vacíos incluyendo archivos como .gitkeep
