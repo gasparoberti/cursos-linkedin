@@ -130,7 +130,7 @@ git commit -a		abre el editor de texto que se tiene configurado para ingresar un
 git log --oneline	devuelve todas las primeras lineas de cada commit (los ultimos cinco)
 
 
-Atomics Commits:	buena practica
+Atomics Commits:	buena practica 
 Son lo mas pequeño posible, afectan a un solo aspecto
 son faciles de entender para trabajar con ellos y encontrar bugs
 mejora la colaboracion con otros

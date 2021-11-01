@@ -180,4 +180,17 @@ por defecto stash no incluye los archivos untrackeados. para esto tenemos que pa
 
 
 View Stashed Changes:
-git stash show stash@{0}	el numero es un id que crece con cada stash
+git stash list		muestra todos los distintos stash que se han realizado. se guarda para todas las ramas, es decir que si yo tenia cambios en una rama y hago un stash voy a poder ver ese stash ya sea que esté en una rama o la otra (en el show te especifica en qué rama se hizo el stash)
+
+se puede usar cuando en otra rama que creé a partir del master se hacen cambios. porque cuando se quiere volver al master no te dejará commitear e incluso a veces cambiar de rama sin guardar o commitear los cambios de la otra rama.
+para esto se usa stash. para guardarlos y poder cambiar de rama.
+
+git stash show stash@{0}	el numero es un id que crece con cada stash.
+git stash show 			te devuelve el ultimo stash (el 0)
+
+git stash show -p stash@{0}	te devuelve las linieas de los cambios y los cambios que se hicieron. mientras que el otro solo devolvía las lineas que habían cambiado.
+
+
+Retrieved stash changes:
+para volver los cambios que se stashearon al working directory se debe usar el siguiente comando tantas veces como se quiera volver.
+git stash pop stash@{0}
