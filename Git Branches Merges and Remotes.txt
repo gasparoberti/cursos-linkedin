@@ -194,3 +194,21 @@ git stash show -p stash@{0}	te devuelve las linieas de los cambios y los cambios
 Retrieved stash changes:
 para volver los cambios que se stashearon al working directory se debe usar el siguiente comando tantas veces como se quiera volver.
 git stash pop stash@{0}
+
+git stash apply		???
+
+
+Delete Stashed changes:
+git stash drop stash@{0}	elimina el stash
+
+git stash te limpia todos los stashes
+
+
+
+Local and Remote Repos:
+sirve para que otros puedan acceder y colaborar a traves de pushs. los pushs suben al remoto las ramas, commits etc con los mismos shas
+
+haciendo un pull desde el remoto nos descargamos la rama origin/master, o mejor dicho es la rama que referencia al master del remoto.
+
+haciendo un fetch localizamos en el master del remoto que hay cambios que haya hecho otro colaborador. pero no los traemos aun.
+para esto tenemos que hacer un merge desde el origin/master y ahí recién tendremos los cambios en nuestro master.
