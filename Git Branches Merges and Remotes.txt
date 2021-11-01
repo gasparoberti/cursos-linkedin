@@ -1,0 +1,183 @@
+Reference Commits:
+se puede referenciar a un commit con 4 caracteres del sha como mínimo. pero para que no haya ambiguedad se requiere entre 8y10
+
+
+Ancestry:
+git show HEAD^	te devuelve el commit padre del head es decir el commit que se realizó directamente antes). se puede verificar mirando en el log. tambien se puede aplicar a un commit específico pasando el sha+^ en vez de HEAD^
+git show HEAD^^		devuelve el abuelo
+
+git show HEAD~1 	devuelve el padre, ~2 devuelve el "abuelo" es decir el anterior al padre.. y así sucesivamente.
+
+git show HEAD~		devuelve el padre igual que si usamos el HEAD^
+
+
+Tree listings:
+git ls-tree HEAD	te devuelve la lista de archivos que tiene ese commit
+git ls-tree HEAD^	devuelve la lista del commit padre
+
+git ls-tree HEAD carpeta\ vacia/	devuelve la liata de esa carpeta en ese commit
+
+
+Filter commit log:
+git log -2	devuelve solo los ultimos 2 commits
+
+git log --since=2021-10-26	te devuelve los commits desde esa fecha hasta la fecha actual
+git log --until=2021-10-26	devuelve los commits hasta esa fecha
+git log --until="3 days ago"
+git log --until=2.weeks --before=3.days		
+
+git log --author="Gasp"		devuelve como si usara un like en el autor
+
+git log --grep="Initial"	igual que el anterior pero busca en toda la data del commit en vez de solo en el autor
+
+git log 38e491fbd..HEAD		devuelve los commits entre esos dos pero si incluir el primero. es decir que el primero es > y el segundo es <=
+
+git log .gitignore	devuelve todos lor commits que esten relacionados con ese archivo
+
+
+Format the commit log:
+git log -p		no se que hace
+git log --stat		devuelve de cada commit info de cuanas lineas se eliminaron y cuantas se agregaron..
+
+git log --format=short	devuelve una forma abreviada de los commits. pueden ser:
+oneline, short, medium (default), full, fuller, email, raw
+
+git log --oneline	es igual al format=oneline pero detalla el hash de forma corta
+
+		
+Branching
+aislan funcionalodades o secciones de trabajo
+hay un working directory
+al cambiar de branches cambiamos de contexto de maneta muy rapida.
+
+tenemos la rama master. el commit head es ultimo commit en el master branch. cuando creamos un nueva rama el head sigue en la rama original hasta que se haga un commit. recien ahí cambiará el HEAD al commit de la nueva rama. cuando cambiamos a la rama master el HEAD vuelve al ultimo commit de esa rama.
+
+
+Create Branches:
+git branch	te lista todas las ramas que existen. la rama seleccionada es la verde.
+
+git branch nuevo_branch		te crea una nueva rama. deben ser sin espacios los nombres.
+
+ls -la .git/refs/heads/		te lista las ramas que existen (dentro del dir heads)
+
+cat .git/refs/heads/master	te devuelve el numero del commit master
+cat .git/refs/heads/nuevo_branch	me devuelve el mismo número de commit (porque el head no se movió del ultimo commit del master). recien cuando se cree un nuevo commit en nuevo_branch ahí se puede verificar que ha cambiado el sha del commit
+
+
+Switch Branches:
+git checkout nuevo_branch
+
+si hacemos un git log --oneline podremos ver que ahora el head está en el commit de la otra rama que ya no es la misma que el master
+
+
+Create and switch branches:
+git checkout -b nuevo_branch2	esta opcion no solo te crea la rama sino que te switchea a esa nueva rama.
+	si queremos crear una rama desde otra rama y no desde la que estamos parados.
+
+
+Switching branches with uncommites changes:
+	no se puede cambiar si hay conflictos en el working directory
+	se puede switchear si los cambios en el working directory pudieron ser aplicados sin conflictos.
+	puedo switchear si los archivos no han sido trackeados
+
+posibles soluciones:
+	commitear en la rama actual
+	remover los cambios y recién ahí cambiar de rama
+	STASH los cambios
+
+
+Compare Branches:
+git diff master..nuevo_branch	compara dos archivos o dos tree ish
+
+git branch --merged	lista las ramas en los cuales los commits van por detrás del commit en el que estoy parado
+git branch --no--merged	lista de manera opuesta las que no lista en el anterior.
+
+
+
+Rename branches:
+git branch -m viejo_nombre nuevo_nombre	si no paso el primer nombre por defecto me toma el unico nombre como nuevo nombre de la rama
+
+
+Delete branches:
+git branch -d rama_a_borrar	elimina la rama del working directory. NO DEBO ESTAR PARADO EN LA RAMA QUE QUIERO BORRAR.
+si la rama que quiero borrar no esta completamente mergeada (es decir que está por delante de master) entonces tampoco puedo eliminarla. para esto tengo que: usar el parametro -D en vez de -d. asi se fuerza la eliminación
+
+
+Git Prompt:	sirve para que te muestre la rama en la que estas parado en el comand prompt (en git ahora viene por defecto asi que no hace falta instalar)
+agrega la rama actual al command prop
+funciona de manera similar al .git-completion.bash
+puede necesitar ser instalado
+https://github.com/git/git	en este repo en contrib/completion está el archivo git-prompt.sh
+
+
+Reset Types:
+resetea los cambios en los archivos en el staging o en el working para un commit específoco
+mueve el head pointer a un commit específico
+hay tres tipos: 
+soft: mueve el head pointer pero no cambia el staging ni el working
+	git reset --soft nombre_treeish
+se usa cuando se quiere volver a un estado anterior y eliminar los cambios stageados. o para hacer amend en un commit. es similar al amend
+si ya habias commiteado algun cambio te lo vuelve al staging (al commit del staging). si yo quiero volver al commit en el que habia commietado esos archivos puedo hacerlo siempre y cuando no haya realizado un nuevo commit. en ese caso ya no se podrá volver al commit que se reseteó
+
+
+mixed (default): mueve el head ponter desde el staging al repository. no cambia el working
+	git reset --mixed nombre_treeish
+se usa para dejar los cambios en el working. es decir sacarlos del repository y del staging.
+
+
+hard: mueve el head pointer cambiando el staging al repository y el working al repository. es como un rollback a un punto específico.
+	git reset --hard nombre_treeish
+sieve para deshacer permanentemente commits. los commits previos y todos los cambios serán descartados (no se pueden recuperar porque se eliminan los cambios de ese commit (pero no se elimina el commit))
+hay que tener cuidado con los commits compartidos. ya que estos tendrán sus commits y con un reset hard descartas todos los tuyos pero no los demas forzando a tener que sincronizar.
+se utiliza basicamente para volver el working al mismo estado que tenía en otro commit.
+
+
+Merge Code:
+sirve para unir un branch al master
+
+git merge nombre_rama	te mergea lo que tenga la rama con master(siempre y cuando la rama esté delante de master. sino habrá conflictos y habrá que sincronizar.
+
+
+Fast-Forward merges VS Real Merges:
+un merge real elimina todos los commits que esten por delante de el.....
+A fast-forward merge becomes part of the line of commits, whereas a true merge is recursive and happens when the master has new commits.
+
+
+Merge conflicts:
+se da cuando en la rama a la que quiero mergear tiene cambios que la rama que quiero unir a esta no tiene. si son en lineas distintas entonces no hay problema, el tema es si es la misma linea, ahí habrá conflictos.
+cuando hay un conflicto git queda entre master y un punto intermedio llamado merging. si usamos el comando git status nos dirá qué archivo es que tiene el conflicto y nos dará las opciones para resolverlo.
+
+
+Resolve Merge Conflicts:
+
+-abortar el commit: deshace el commit		git merge --abort
+
+-resolver el conflicto manualmente (editando el código)	git diff --color-words master..nuevo_branch  así podré ver las diferencias para editar y dejar lo que quiero. despues tengo que hacer un add del archivo en conflicto y por ultimo un commit  (git commit 	abre el editor, guardo y al cerrar de mergea, O directamente hago un commit comun con mensaje y tambien se mergea)  para que finalmente se haga el merge.
+puedo hacer un git branch --merged 	y verificar que la rama está mergeada
+
+-usar una herramienta para merge
+git merge help mergetool
+
+git log --graph --all --oneline --decorate		me permite ver como fue el arbol de commits y merges
+
+
+Estrategias para reducir conflictos:
+-mantener las lineas cortas
+-hacer commits pequeños y concretos. modificando pocos archivos a la vez
+-tener cuidado con los espacios en blanco, enters o tabs
+-mergear a menudo. cada vez que se pueda	guglear feature flags (técnica)
+-actualizar cambios desde master para que la rama esté siempre actualizada
+
+
+Guardar cambios en el stash:
+el stash no pertenece a ningono de los tres partes (repo, stage, work) es una cuarta area separada de las demas.
+
+git stash save "comentario representativo para el stash"
+
+los cambios se mueven al stash (dejan de estar en el working) y ahora si se puede cambiar de rama sin problema.
+
+por defecto stash no incluye los archivos untrackeados. para esto tenemos que pasar el parametro -u o --include-untracked en el git stash
+
+
+View Stashed Changes:
+git stash show stash@{0}	el numero es un id que crece con cada stash
