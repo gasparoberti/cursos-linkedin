@@ -248,4 +248,4 @@ se debe copiar y pegar la url desde el repo de github en el directorio que quier
 si pegado a la url le agrego un tag como por ejemplo gaspar_version entonces podré tener mas de un repo en la misma carpeta y se podrán trabajar de manera independiente
 
 
-Push Changes to a Remote Repo:
+Push Changes to a Remote Repo: cambio para probar fetch
