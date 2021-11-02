@@ -212,3 +212,40 @@ haciendo un pull desde el remoto nos descargamos la rama origin/master, o mejor 
 
 haciendo un fetch localizamos en el master del remoto que hay cambios que haya hecho otro colaborador. pero no los traemos aun.
 para esto tenemos que hacer un merge desde el origin/master y ahí recién tendremos los cambios en nuestro master.
+
+
+Add a remote repo:
+git remote 	->	origin		te da la lista de remotos que tenemos actualmente. si no hay ninguno no devuelve nada
+para que aparezca origin antes tuvimos que haber puesto el comando:
+
+git remote add origin git@github.com:gasparoberti/cursos-linkedin.git
+
+git remote -v		lista .....
+
+se puede tener mas de un remoto. pero no es necesario. por lo general se tiene uno solo y se lo llama origin
+
+cat .git/config 	muestra los datos de la conf pero ahora ademas muestra el remoto
+
+git remote rm origin	elimina el repo remoto, o mejor dicho la referencia al repo remoto.
+
+
+Create Remote branches:
+git push -u origin rama_local		te sube la rama local al remoto
+
+git branch -r		lista todas las ramas del remoto
+
+git branch -a		lista todas las ramas incluidas las del remoto
+
+ls -la .git/refs/remotes	devuelve las ramas que hay en el remoto
+
+cat .git/refs/remotes/origin/master	te devuelve el sha de la rama
+
+
+
+Clone a Remote repo:
+se debe copiar y pegar la url desde el repo de github en el directorio que quiero tener el proyecto. se puede usar http o ssh
+
+si pegado a la url le agrego un tag como por ejemplo gaspar_version entonces podré tener mas de un repo en la misma carpeta y se podrán trabajar de manera independiente
+
+
+Push Changes to a Remote Repo:
