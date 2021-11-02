@@ -249,3 +249,25 @@ si pegado a la url le agrego un tag como por ejemplo gaspar_version entonces pod
 
 
 Push Changes to a Remote Repo:
+el parametro -u va solo si el/los archivos son untrackeados
+
+git push origin master		sube los cambios de mi repo local llamado master al repo remoto que tiene como alias origin
+git push	cumple la misma funcion ya que origin master son las ramas por defecto
+
+
+Fetch Changes from a Remote Repo:
+si hay cambios en el remoto y quiero sincronizar el repo con mi repo local tengo que hacerlo con:
+git fetch origin master		que es lo mismo que	git fetch	este comando le avisa a mi repo local origin/master que en el master del remoto hay cambios. ahora falta traerme esos cambios.
+si uso el comando git log --oneline origin/master -4 puedo ver que la rama origin/master está por delante del HEAD/master, eso es porque no me traje los cambios aun
+
+consejos para saber cuando usar fetch:
+	antes de trabajar
+	antes de pushear
+	antes de quedar offline
+	siempre que puedas
+
+
+
+Merge in Fetched Changes:
+como los cambios no estan mergeados en el working (pero si en el tracking) hay que mergearlos.
+git merge origin/master
