@@ -248,7 +248,6 @@ se debe copiar y pegar la url desde el repo de github en el directorio que quier
 si pegado a la url le agrego un tag como por ejemplo gaspar_version entonces podré tener mas de un repo en la misma carpeta y se podrán trabajar de manera independiente
 
 
-<<<<<<< HEAD
 Push Changes to a Remote Repo:
 el parametro -u va solo si el/los archivos son untrackeados
 
@@ -272,6 +271,50 @@ consejos para saber cuando usar fetch:
 Merge in Fetched Changes:
 como los cambios no estan mergeados en el working (pero si en el tracking) hay que mergearlos.
 git merge origin/master
-=======
-Push Changes to a Remote Repo: cambio para probar fetch
->>>>>>> origin/master
+
+git pull = git fetch + git merge origin/master
+
+
+
+Checkout Remote Branches:
+para crear en el locar una rama basada en una del remoto primero tiene que estar creada la rama en el remoto (la unica forma de hacerlo es creandola en el local y despues pusheandola). despues tenemos que hacer un fetch para traernos la rama. y despues un merge  ?????
+
+
+
+Push to an updated remote branch:
+si al intentar hacer un push git devuelve un reject debemos hacer 
+	fetch
+	merge
+	push
+
+
+Delete a remote branch:
+git push origin :nombre_rama	elimina la rama nombre_rama del remoto pero sigue estando en el local.
+git push origin --delete nombre_rama	hace exactamente lo mismo
+
+se puede verificar con 		git branch -r
+
+para crearla de nuevo en el remoto:	git push -u origin nombre_rama
+
+
+Habilitar colaboradores:
+si quiero crear una rama local a partir de una que esta en el remoto (que lo creó un colabo) usamos:
+git checkout -b nombre_rama origin/nombre_rama
+
+de esta forma creo una rama a partir de una rama del remoto
+
+siempre antes de hacer un push conviene hacer un fetch para sincronizar y actualizar el repo local y que no haya problemas de commits con el remoto
+
+
+
+Crear alias para agilizar comandos:
+git config --global alias.st "status"	le agrega el alias para usar st en vez de status
+
+algunos ejemplos podrian ser:
+	st	status
+	co	checkout
+	ci	commit
+	br	branch
+	df	diff
+	dfs	diff --staged
+	logg	logg --graph --decorate --oneline --all
