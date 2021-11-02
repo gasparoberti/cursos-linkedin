@@ -248,6 +248,7 @@ se debe copiar y pegar la url desde el repo de github en el directorio que quier
 si pegado a la url le agrego un tag como por ejemplo gaspar_version entonces podré tener mas de un repo en la misma carpeta y se podrán trabajar de manera independiente
 
 
+<<<<<<< HEAD
 Push Changes to a Remote Repo:
 el parametro -u va solo si el/los archivos son untrackeados
 
@@ -271,3 +272,6 @@ consejos para saber cuando usar fetch:
 Merge in Fetched Changes:
 como los cambios no estan mergeados en el working (pero si en el tracking) hay que mergearlos.
 git merge origin/master
+=======
+Push Changes to a Remote Repo: cambio para probar fetch
+>>>>>>> origin/master
